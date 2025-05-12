@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio | Your Name</title>
+    <style>
+        /* Variables */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --border: #ddd;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-info p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--secondary);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .bio {
+            line-height: 1.8;
+        }
+        
+        .bio p {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+        
+        .contact-info a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Publications Section */
+        .publication-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .publication-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .publication-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-journal {
+            font-style: italic;
+        }
+        
+        .publication-abstract {
+            margin-top: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+        
+        .publication-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .publication-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Research Section */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .research-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .research-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .research-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .research-content {
+            padding: 1.5rem;
+        }
+        
+        .research-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .research-description {
+            margin-bottom: 1rem;
+        }
+
+        /* Teaching Section */
+        .course-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .course-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .course-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .course-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* CV Section */
+        .cv-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .cv-section {
+            margin-bottom: 2rem;
+        }
+        
+        .cv-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cv-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cv-item-title {
+            font-weight: bold;
+        }
+        
+        .cv-item-subtitle {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cv-item-date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .cv-item-description {
+            margin-top: 0.5rem;
+        }
+        
+        .cv-download {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cv-download:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .social-link:hover {
+            opacity: 0.8;
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content, .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-image {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="profile">
+                <img src="/api/placeholder/400/400" alt="Your Name" class="profile-image">
+                <div class="profile-info">
+                    <h1>Your Name, Ph.D.</h1>
+                    <p>Associate Professor of Computer Science</p>
+                    <p>University Name</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#cv">CV</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="bio">
+                    <p>Welcome to my academic portfolio! I am an Associate Professor in the Department of Computer Science at University Name. My research focuses on artificial intelligence, machine learning, and their applications in healthcare.</p>
+                    
+                    <p>I received my Ph.D. in Computer Science from Stanford University in 2015, where I worked on developing novel algorithms for medical image analysis. Before that, I completed my Master's degree at MIT and my Bachelor's at University of California, Berkeley.</p>
+                    
+                    <p>Currently, I lead the AI for Healthcare Lab, where we explore innovative ways to apply machine learning techniques to solve critical healthcare challenges. Our recent work has been published in top-tier venues such as NeurIPS, ICML, and Nature Medicine.</p>
+                    
+                    <p>I am passionate about mentoring students and fostering an inclusive research environment. I am actively looking for motivated graduate students interested in AI and healthcare to join my research group.</p>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:yourname@university.edu">yourname@university.edu</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>(123) 456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🏢</span>
+                        <span>Science Building, Room 305</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>123 University Avenue, City, State, ZIP</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔗</span>
+                        <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📝</span>
+                        <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔬</span>
+                        <a href="https://orcid.org" target="_blank">ORCID</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2 class="section-title">Publications</h2>
+            
+            <div class="publication-item">
+                <h3 class="publication-title">Neural Networks for Medical Image Segmentation: A Novel Approach</h3>
+                <div class="publication-meta">
+                    <span class="publication-authors">Your Name, Collaborator One, Collaborator Two</span>
+                    <span> | </span>
+                    <span class="publication-year">2024</span>
+                    <span> | </span>
+                    <span class="publication-journal">Nature Medicine</span>
+                </div>
+                <p class="publication-abstract">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                <a href="#" class="publication-link">View Paper</a>
+            </div>
+            
+            <div class="publication-item">
+                <h3 class="publication-title">Transformer Models for Electronic Health Records Analysis</h3>
+                <div class="publication-meta">
+                    <span class="publication-authors">Your Name, Collaborator Three</span>
+                    <span> | </span>
+                    <span class="publication-year">2023</span>
+                    <span> | </span>
+                    <span class="publication-journal">Journal of Biomedical Informatics</span>
+                </div>
+                <p class="publication-abstract">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                <a href="#" class="publication-link">View Paper</a>
+            </div>
+            
+            <div class="publication-item">
+                <h3 class="publication-title">FedLearn: A Framework for Privacy-Preserving Federated Learning in Healthcare</h3>
+                <div class="publication-meta">
+                    <span class="publication-authors">Collaborator Four, Your Name, Collaborator Five</span>
+                    <span> | </span>
+                    <span class="publication-year">2022</span>
+                    <span> | </span>
+                    <span class="publication-journal">NeurIPS</span>
+                </div>
+                <p class="publication-abstract">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                <a href="#" class="publication-link">View Paper</a>
+            </div>
+        </section>
+        
+        <!-- Research Section -->
+        <section id="research">
+            <h2 class="section-title">Research</h2>
+            
+            <div class="research-grid">
+                <div class="research-item">
+                    <img src="/api/placeholder/600/400" alt="Research Project 1" class="research-image">
+                    <div class="research-content">
+                        <h3 class="research-title">AI for Medical Imaging</h3>
+                        <p class="research-description">Developing deep learning approaches for medical image analysis, focusing on segmentation, classification, and anomaly detection.</p>
+                        <a href="#" class="publication-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="research-item">
+                    <img src="/api/placeholder/600/400" alt="Research Project 2" class="research-image">
+                    <div class="research-content">
+                        <h3 class="research-title">Natural Language Processing for EHR</h3>
+                        <p class="research-description">Extracting insights from clinical notes using transformer-based models to improve decision support systems.</p>
+                        <a href="#" class="publication-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="research-item">
+                    <img src="/api/placeholder/600/400" alt="Research Project 3" class="research-image">
+                    <div class="research-content">
+                        <h3 class="research-title">Federated Learning for Healthcare</h3>
+                        <p class="research-description">Privacy-preserving machine learning techniques that enable multi-institutional collaboration without sharing sensitive data.</p>
+                        <a href="#" class="publication-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Teaching Section -->
+        <section id="teaching">
+            <h2 class="section-title">Teaching</h2>
+            
+            <div class="course-item">
+                <h3 class="course-title">CS 4321: Introduction to Machine Learning</h3>
+                <div class="course-meta">
+                    <span>Fall 2024</span>
+                    <span> | </span>
+                    <span>Undergraduate Course</span>
+                </div>
+                <p>This course provides an introduction to machine learning concepts and algorithms. Topics include supervised learning, unsupervised learning, neural networks, and model evaluation.</p>
+                <a href="#" class="publication-link">Course Materials</a>
+            </div>
+            
+            <div class="course-item">
+                <h3 class="course-title">CS 5678: Advanced Topics in AI for Healthcare</h3>
+                <div class="course-meta">
+                    <span>Spring 2024</span>
+                    <span> | </span>
+                    <span>Graduate Seminar</span>
+                </div>
+                <p>A graduate-level seminar focusing on the latest research and applications of artificial intelligence in healthcare. Students read and discuss recent papers and work on a research project.</p>
+                <a href="#" class="publication-link">Course Materials</a>
+            </div>
+            
+            <div class="course-item">
+                <h3 class="course-title">CS 2020: Data Structures and Algorithms</h3>
+                <div class="course-meta">
+                    <span>Fall 2023</span>
+                    <span> | </span>
+                    <span>Undergraduate Course</span>
+                </div>
+                <p>A comprehensive introduction to data structures and algorithms, including analysis, implementation, and application to real-world problems.</p>
+                <a href="#" class="publication-link">Course Materials</a>
+            </div>
+        </section>
+        
+        <!-- CV Section -->
+        <section id="cv">
+            <h2 class="section-title">Curriculum Vitae</h2>
+            
+            <div class="cv-content">
+                <div class="cv-section">
+                    <h3>Education</h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Ph.D. in Computer Science</div>
+                        <div class="cv-item-subtitle">Stanford University</div>
+                        <div class="cv-item-date">2010 - 2015</div>
+                        <div class="cv-item-description">Thesis: "Novel Deep Learning Approaches for Medical Image Analysis"</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">M.S. in Computer Science</div>
+                        <div class="cv-item-subtitle">Massachusetts Institute of Technology</div>
+                        <div class="cv-item-date">2008 - 2010</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">B.S. in Computer Science</div>
+                        <div class="cv-item-subtitle">University of California, Berkeley</div>
+                        <div class="cv-item-date">2004 - 2008</div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Professional Experience</h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Associate Professor</div>
+                        <div class="cv-item-subtitle">Department of Computer Science, University Name</div>
+                        <div class="cv-item-date">2020 - Present</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Assistant Professor</div>
+                        <div class="cv-item-subtitle">Department of Computer Science, University Name</div>
+                        <div class="cv-item-date">2015 - 2020</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Research Intern</div>
+                        <div class="cv-item-subtitle">Google Research</div>
+                        <div class="cv-item-date">Summer 2014</div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h3>Grants & Awards</h3>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">NSF CAREER Award</div>
+                        <div class="cv-item-date">2019</div>
+                        <div class="cv-item-description">$500,000 for "Innovations in AI for Healthcare"</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">University Teaching Excellence Award</div>
+                        <div class="cv-item-date">2018</div>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-title">Best Paper Award - NeurIPS</div>
+                        <div class="cv-item-date">2017</div>
+                    </div>
+                </div>
+                
+                <a href="#" class="cv-download">Download Full CV (PDF)</a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link">🔗</a>
+                <a href="#" class="social-link">📧</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📱</a>
+            </div>
+            <p class="footer-text">&copy; 2025 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for the navigation highlighting -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all sections
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            // Add click event listener to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Scroll to section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Highlight nav item based on scroll position
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
